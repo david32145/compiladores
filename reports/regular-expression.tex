@@ -1,0 +1,499 @@
+\documentclass[]{article}
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{green}{rgb}{0,0.5,0}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{tikz}
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  stringstyle=\color{green},
+  commentstyle=\color{red},
+  extendedchars=true,
+  showspaces=false,
+  showstringspaces=false,
+  breaklines=true,
+  backgroundcolor=\color{gray!10},
+  breakautoindent=true,
+  captionpos=b,
+  xleftmargin=0pt,
+}
+
+\usepackage{hyperref}
+
+\numberwithin{equation}{section}
+
+%opening
+\title{Compiladores - Expressões regulares}
+\author{Francisco David Nascimento Sousa}
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{center}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.5]{ufc_simbol.png}
+		\label{Rotulo}
+	\end{figure}
+
+	{\LARGE Universidade Federal do Ceará}\\[0.2cm]
+	
+	{\Large Campus Crateús}\\[0.5cm]
+	
+	{\large Ciência da Computação}\\[0.2cm]
+	
+	{\large Compiladores}\\[5.1cm]
+	
+	{\bf \huge Expressões Regulares da Linguagem C}\\[3.1cm]
+	
+	{\large Francisco David Nascimento Sousa 412772} \\ [0.2cm]
+  {\large Lucas Chaves Evangelista 427671} \\[2.7cm]
+	
+	{\large 1 de Setembro de 2020}
+\end{center}
+
+\end{titlepage}
+
+\section{Expressões regulares da linguagem C}
+Descrição das expressões regulares:
+
+Palavra:
+\begin{lstlisting}
+word = [A-Za-z]
+\end{lstlisting}
+
+Número:
+\begin{lstlisting}
+digit = [0-9]
+\end{lstlisting}
+
+Identificador:
+\begin{lstlisting}
+id = ([A-Za-z] + [0-9])*
+\end{lstlisting}
+
+Tipo de dados:
+\begin{lstlisting}
+data_type = int | float | char | void
+\end{lstlisting}
+
+Char literal:
+\begin{lstlisting}
+char_literal = (.)
+\end{lstlisting}
+
+String literal:
+\begin{lstlisting}
+string_literal = "(.)+"
+\end{lstlisting}
+
+Inteiro literal:
+\begin{lstlisting}
+integer_literal => [0-9]+
+\end{lstlisting}
+
+Flutuante literal:
+\begin{lstlisting}
+float_literal => ([0-9]+).([0-9]+)
+\end{lstlisting}
+
+Operadores booleana:
+\begin{lstlisting}
+boolean_operator = == | != | ! | >= | > | <= | < | && | ||
+\end{lstlisting}
+
+Operadores aritméticos:
+\begin{lstlisting}
+arithmetic_operator = + | - | * | | / | % | ++ | -- | += | *= | /=
+\end{lstlisting}
+
+Delimitadores:
+\begin{lstlisting}
+delimiter = , | ; 
+\end{lstlisting}
+
+\section{Autômatos C}
+Autômatos das expressões acima:
+
+Letra:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (28,-27.9) circle (3);
+\draw [black] (49.9,-27.9) circle (3);
+\draw [black] (49.9,-27.9) circle (2.4);
+\draw [black] (31,-27.9) -- (46.9,-27.9);
+\fill [black] (46.9,-27.9) -- (46.1,-27.4) -- (46.1,-28.4);
+\draw (38.95,-27.4) node [above] {$[A-Z\mbox{ }a-z]$};
+\draw [black] (19.6,-27.9) -- (25,-27.9);
+\draw (19.1,-27.9) node [left] {$I$};
+\fill [black] (25,-27.9) -- (24.2,-27.4) -- (24.2,-28.4);
+\end{tikzpicture}
+\end{center}
+
+
+Número:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (27.4,-27.9) circle (3);
+\draw [black] (49.9,-27.9) circle (3);
+\draw [black] (49.9,-27.9) circle (2.4);
+\draw [black] (30.4,-27.9) -- (46.9,-27.9);
+\fill [black] (46.9,-27.9) -- (46.1,-27.4) -- (46.1,-28.4);
+\draw (38.65,-27.4) node [above] {$[0-9]$};
+\draw [black] (19,-27.9) -- (24.4,-27.9);
+\draw (18.5,-27.9) node [left] {$I$};
+\fill [black] (24.4,-27.9) -- (23.6,-27.4) -- (23.6,-28.4);
+\end{tikzpicture}
+\end{center}
+
+
+
+Identificador:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (27.4,-27.9) circle (3);
+\draw [black] (49.9,-27.9) circle (3);
+\draw [black] (49.9,-27.9) circle (2.4);
+\draw [black] (30.4,-27.9) -- (46.9,-27.9);
+\fill [black] (46.9,-27.9) -- (46.1,-27.4) -- (46.1,-28.4);
+\draw (38.65,-27.4) node [above] {$[A-Z\mbox{ }a-z]$};
+\draw [black] (19,-27.9) -- (24.4,-27.9);
+\draw (18.5,-27.9) node [left] {$I$};
+\fill [black] (24.4,-27.9) -- (23.6,-27.4) -- (23.6,-28.4);
+\draw [black] (48.577,-25.22) arc (234:-54:2.25);
+\draw (49.9,-20.65) node [above] {$([A-Z\mbox{ }a-z]\mbox{ }+\mbox{ }[0-9])$};
+\fill [black] (51.22,-25.22) -- (52.1,-24.87) -- (51.29,-24.28);
+\end{tikzpicture}
+\end{center}
+
+
+Tipo de dados:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (24.3,-25.8) circle (3);
+\draw [black] (43.4,-16.7) circle (3);
+\draw [black] (43.4,-16.7) circle (2.4);
+\draw [black] (45.6,-23) circle (3);
+\draw [black] (45.6,-23) circle (2.4);
+\draw [black] (45.6,-29.3) circle (3);
+\draw [black] (45.6,-29.3) circle (2.4);
+\draw [black] (42.5,-35.3) circle (3);
+\draw [black] (42.5,-35.3) circle (2.4);
+\draw [black] (27.01,-24.51) -- (40.69,-17.99);
+\fill [black] (40.69,-17.99) -- (39.75,-17.88) -- (40.18,-18.79);
+\draw (32.32,-20.74) node [above] {$int$};
+\draw [black] (15.9,-25.8) -- (21.3,-25.8);
+\draw (15.4,-25.8) node [left] {$I$};
+\fill [black] (21.3,-25.8) -- (20.5,-25.3) -- (20.5,-26.3);
+\draw [black] (27.27,-25.41) -- (42.63,-23.39);
+\fill [black] (42.63,-23.39) -- (41.77,-23) -- (41.9,-23.99);
+\draw (34.25,-23.69) node [above] {$float$};
+\draw [black] (26.96,-27.19) -- (39.84,-33.91);
+\fill [black] (39.84,-33.91) -- (39.36,-33.1) -- (38.9,-33.98);
+\draw (35.66,-30.04) node [above] {$void$};
+\draw [black] (27.26,-26.29) -- (42.64,-28.81);
+\fill [black] (42.64,-28.81) -- (41.93,-28.19) -- (41.77,-29.18);
+\draw (35.9,-26.84) node [above] {$char$};
+\end{tikzpicture}
+\end{center}
+
+Letra:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (16.3,-28.8) circle (3);
+\draw [black] (51.2,-28.8) circle (3);
+\draw [black] (34.3,-28.8) circle (3);
+\draw [black] (68.3,-28.8) circle (3);
+\draw [black] (68.3,-28.8) circle (2.4);
+\draw [black] (37.3,-28.8) -- (48.2,-28.8);
+\fill [black] (48.2,-28.8) -- (47.4,-28.3) -- (47.4,-29.3);
+\draw (42.75,-28.3) node [above] {$(.)$};
+\draw [black] (19.3,-28.8) -- (31.3,-28.8);
+\fill [black] (31.3,-28.8) -- (30.5,-28.3) -- (30.5,-29.3);
+\draw (25.3,-28.3) node [above] {$"$};
+\draw [black] (54.2,-28.8) -- (65.3,-28.8);
+\fill [black] (65.3,-28.8) -- (64.5,-28.3) -- (64.5,-29.3);
+\draw (59.75,-28.3) node [above] {$"$};
+\draw [black] (6.6,-28.8) -- (13.3,-28.8);
+\draw (6.1,-28.8) node [left] {$I$};
+\fill [black] (13.3,-28.8) -- (12.5,-28.3) -- (12.5,-29.3);
+\end{tikzpicture}
+\end{center}
+
+
+String:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (16.3,-28.8) circle (3);
+\draw [black] (51.2,-28.8) circle (3);
+\draw [black] (34.3,-28.8) circle (3);
+\draw [black] (68.3,-28.8) circle (3);
+\draw [black] (68.3,-28.8) circle (2.4);
+\draw [black] (37.3,-28.8) -- (48.2,-28.8);
+\fill [black] (48.2,-28.8) -- (47.4,-28.3) -- (47.4,-29.3);
+\draw (42.75,-28.3) node [above] {$(.)$};
+\draw [black] (19.3,-28.8) -- (31.3,-28.8);
+\fill [black] (31.3,-28.8) -- (30.5,-28.3) -- (30.5,-29.3);
+\draw (25.3,-28.3) node [above] {$"$};
+\draw [black] (54.2,-28.8) -- (65.3,-28.8);
+\fill [black] (65.3,-28.8) -- (64.5,-28.3) -- (64.5,-29.3);
+\draw (59.75,-28.3) node [above] {$"$};
+\draw [black] (49.877,-26.12) arc (234:-54:2.25);
+\draw (51.2,-21.55) node [above] {$(.)$};
+\fill [black] (52.52,-26.12) -- (53.4,-25.77) -- (52.59,-25.18);
+\draw [black] (6.6,-28.8) -- (13.3,-28.8);
+\draw (6.1,-28.8) node [left] {$I$};
+\fill [black] (13.3,-28.8) -- (12.5,-28.3) -- (12.5,-29.3);
+\end{tikzpicture}
+\end{center}
+
+Inteiro literal:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (24.3,-25.8) circle (3);
+\draw [black] (46.9,-25.8) circle (3);
+\draw [black] (46.9,-25.8) circle (2.4);
+\draw [black] (15.9,-25.8) -- (21.3,-25.8);
+\draw (15.4,-25.8) node [left] {$I$};
+\fill [black] (21.3,-25.8) -- (20.5,-25.3) -- (20.5,-26.3);
+\draw [black] (27.3,-25.8) -- (43.9,-25.8);
+\fill [black] (43.9,-25.8) -- (43.1,-25.3) -- (43.1,-26.3);
+\draw (35.6,-25.3) node [above] {$[0-9]$};
+\draw [black] (45.577,-23.12) arc (234:-54:2.25);
+\draw (46.9,-18.55) node [above] {$[0-9]$};
+\fill [black] (48.22,-23.12) -- (49.1,-22.77) -- (48.29,-22.18);
+\end{tikzpicture}
+\end{center}
+
+Ponto flutuante literal:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14.2,-26.1) circle (3);
+\draw [black] (30.7,-26.1) circle (3);
+\draw [black] (45.9,-26.1) circle (3);
+\draw [black] (64.8,-26.1) circle (3);
+\draw [black] (64.8,-26.1) circle (2.4);
+\draw [black] (5.8,-26.1) -- (11.2,-26.1);
+\draw (5.3,-26.1) node [left] {$I$};
+\fill [black] (11.2,-26.1) -- (10.4,-25.6) -- (10.4,-26.6);
+\draw [black] (17.2,-26.1) -- (27.7,-26.1);
+\fill [black] (27.7,-26.1) -- (26.9,-25.6) -- (26.9,-26.6);
+\draw (22.45,-25.6) node [above] {$[0-9]$};
+\draw [black] (29.377,-23.42) arc (234:-54:2.25);
+\draw (30.7,-18.85) node [above] {$[0-9]$};
+\fill [black] (32.02,-23.42) -- (32.9,-23.07) -- (32.09,-22.48);
+\draw [black] (33.7,-26.1) -- (42.9,-26.1);
+\fill [black] (42.9,-26.1) -- (42.1,-25.6) -- (42.1,-26.6);
+\draw (38.3,-25.6) node [above] {$.$};
+\draw [black] (48.9,-26.1) -- (61.8,-26.1);
+\fill [black] (61.8,-26.1) -- (61,-25.6) -- (61,-26.6);
+\draw (55.35,-25.6) node [above] {$[0-9]$};
+\draw [black] (63.477,-23.42) arc (234:-54:2.25);
+\draw (64.8,-18.85) node [above] {$[0-9]$};
+\fill [black] (66.12,-23.42) -- (67,-23.07) -- (66.19,-22.48);
+\end{tikzpicture}
+\end{center}
+
+Operadores booleanos:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.3,-28.7) circle (3);
+\draw [black] (45.6,-5.1) circle (3);
+\draw [black] (45.6,-5.1) circle (2.4);
+\draw [black] (49.8,-10.1) circle (3);
+\draw [black] (49.8,-10.1) circle (2.4);
+\draw [black] (52.9,-15.7) circle (3);
+\draw [black] (52.9,-15.7) circle (2.4);
+\draw [black] (54,-35.3) circle (3);
+\draw [black] (54,-35.3) circle (2.4);
+\draw [black] (54,-22.2) circle (3);
+\draw [black] (54,-22.2) circle (2.4);
+\draw [black] (35.5,-39.1) circle (3);
+\draw [black] (30.5,-43.6) circle (3);
+\draw [black] (25.9,-48.2) circle (3);
+\draw [black] (54,-28.7) circle (3);
+\draw [black] (54,-28.7) circle (2.4);
+\draw [black] (31.2,-10.1) circle (3);
+\draw [black] (34.9,-16.3) circle (3);
+\draw [black] (39.2,-33.5) circle (3);
+\draw [black] (52.9,-41.5) circle (3);
+\draw [black] (52.9,-41.5) circle (2.4);
+\draw [black] (49.8,-47) circle (3);
+\draw [black] (49.8,-47) circle (2.4);
+\draw [black] (46.5,-52.4) circle (3);
+\draw [black] (46.5,-52.4) circle (2.4);
+\draw [black] (3.9,-28.7) -- (9.3,-28.7);
+\draw (3.4,-28.7) node [left] {$I$};
+\fill [black] (9.3,-28.7) -- (8.5,-28.2) -- (8.5,-29.2);
+\draw [black] (15.16,-27.79) -- (50.04,-16.61);
+\fill [black] (50.04,-16.61) -- (49.13,-16.38) -- (49.43,-17.33);
+\draw (31.87,-21.67) node [above] {$!$};
+\draw [black] (15.26,-28.24) -- (51.04,-22.66);
+\fill [black] (51.04,-22.66) -- (50.17,-22.29) -- (50.32,-23.28);
+\draw (32.73,-24.85) node [above] {$>$};
+\draw [black] (15.04,-29.93) -- (32.76,-37.87);
+\fill [black] (32.76,-37.87) -- (32.24,-37.09) -- (31.83,-38);
+\draw (24.94,-33.39) node [above] {$<$};
+\draw [black] (14.62,-30.6) -- (28.18,-41.7);
+\fill [black] (28.18,-41.7) -- (27.88,-40.81) -- (27.24,-41.58);
+\draw (22.11,-35.66) node [above] {$|$};
+\draw [black] (14.02,-31.16) -- (24.18,-45.74);
+\fill [black] (24.18,-45.74) -- (24.14,-44.8) -- (23.32,-45.37);
+\draw (19.7,-37.09) node [right] {$\&$};
+\draw [black] (15.3,-28.7) -- (51,-28.7);
+\fill [black] (51,-28.7) -- (50.2,-28.2) -- (50.2,-29.2);
+\draw (33.15,-28.2) node [above] {$<$};
+\draw [black] (14.44,-26.6) -- (29.06,-12.2);
+\fill [black] (29.06,-12.2) -- (28.14,-12.41) -- (28.84,-13.12);
+\draw (20.66,-18.92) node [above] {$=$};
+\draw [black] (34.03,-9.12) -- (42.77,-6.08);
+\fill [black] (42.77,-6.08) -- (41.85,-5.87) -- (42.17,-6.82);
+\draw (37.43,-7.07) node [above] {$=$};
+\draw [black] (14.93,-27.26) -- (32.27,-17.74);
+\fill [black] (32.27,-17.74) -- (31.33,-17.69) -- (31.81,-18.57);
+\draw (22.77,-22) node [above] {$!$};
+\draw [black] (37.67,-15.15) -- (47.03,-11.25);
+\fill [black] (47.03,-11.25) -- (46.1,-11.1) -- (46.48,-12.02);
+\draw (41.32,-12.68) node [above] {$=$};
+\draw [black] (15.25,-29.23) -- (36.25,-32.97);
+\fill [black] (36.25,-32.97) -- (35.55,-32.34) -- (35.37,-33.32);
+\draw (26.26,-30.5) node [above] {$>$};
+\draw [black] (42.18,-33.86) -- (51.02,-34.94);
+\fill [black] (51.02,-34.94) -- (50.29,-34.34) -- (50.17,-35.34);
+\draw (46.88,-33.8) node [above] {$=$};
+\draw [black] (38.47,-39.51) -- (49.93,-41.09);
+\fill [black] (49.93,-41.09) -- (49.2,-40.49) -- (49.07,-41.48);
+\draw (44.55,-39.7) node [above] {$=$};
+\draw [black] (33.45,-44.12) -- (46.85,-46.48);
+\fill [black] (46.85,-46.48) -- (46.14,-45.85) -- (45.97,-46.83);
+\draw (40.48,-44.74) node [above] {$|$};
+\draw [black] (28.84,-48.8) -- (43.56,-51.8);
+\fill [black] (43.56,-51.8) -- (42.88,-51.15) -- (42.68,-52.13);
+\draw (36.93,-49.69) node [above] {$\&$};
+\end{tikzpicture}
+\end{center}
+
+Operadores aritméticos:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.6,-24.3) circle (3);
+\draw [black] (43.8,-5.6) circle (3);
+\draw [black] (43.8,-5.6) circle (2.4);
+\draw [black] (49.5,-8.8) circle (3);
+\draw [black] (49.5,-8.8) circle (2.4);
+\draw [black] (55,-12.6) circle (3);
+\draw [black] (55,-12.6) circle (2.4);
+\draw [black] (59.3,-30.6) circle (3);
+\draw [black] (59.3,-30.6) circle (2.4);
+\draw [black] (58.1,-18.1) circle (3);
+\draw [black] (58.1,-18.1) circle (2.4);
+\draw [black] (39.3,-34.9) circle (3);
+\draw [black] (36.2,-40.4) circle (3);
+\draw [black] (59.3,-24.3) circle (3);
+\draw [black] (59.3,-24.3) circle (2.4);
+\draw [black] (42.2,-29.2) circle (3);
+\draw [black] (57.2,-36.4) circle (3);
+\draw [black] (57.2,-36.4) circle (2.4);
+\draw [black] (55,-42.4) circle (3);
+\draw [black] (55,-42.4) circle (2.4);
+\draw [black] (32.2,-45.3) circle (3);
+\draw [black] (51.3,-47.5) circle (3);
+\draw [black] (51.3,-47.5) circle (2.4);
+\draw [black] (47.2,-52.5) circle (3);
+\draw [black] (47.2,-52.5) circle (2.4);
+\draw [black] (27.4,-49.4) circle (3);
+\draw [black] (5.2,-24.3) -- (10.6,-24.3);
+\draw (4.7,-24.3) node [left] {$I$};
+\fill [black] (10.6,-24.3) -- (9.8,-23.8) -- (9.8,-24.8);
+\draw [black] (16.49,-23.48) -- (52.11,-13.42);
+\fill [black] (52.11,-13.42) -- (51.21,-13.15) -- (51.48,-14.11);
+\draw (33.5,-17.89) node [above] {$*$};
+\draw [black] (16.57,-23.89) -- (55.13,-18.51);
+\fill [black] (55.13,-18.51) -- (54.27,-18.13) -- (54.41,-19.12);
+\draw (35.59,-20.63) node [above] {$/$};
+\draw [black] (16.37,-25.44) -- (36.53,-33.76);
+\fill [black] (36.53,-33.76) -- (35.98,-32.99) -- (35.6,-33.91);
+\draw (27.25,-29.09) node [above] {$-$};
+\draw [black] (16.04,-26.04) -- (33.76,-38.66);
+\fill [black] (33.76,-38.66) -- (33.4,-37.79) -- (32.81,-38.6);
+\draw (25.97,-31.85) node [above] {$+$};
+\draw [black] (16.6,-24.3) -- (56.3,-24.3);
+\fill [black] (56.3,-24.3) -- (55.5,-23.8) -- (55.5,-24.8);
+\draw (36.45,-23.8) node [above] {$\%$};
+\draw [black] (16.56,-24.81) -- (39.24,-28.69);
+\fill [black] (39.24,-28.69) -- (38.54,-28.07) -- (38.37,-29.05);
+\draw (28.38,-26.15) node [above] {$+$};
+\draw [black] (45.19,-29.44) -- (56.31,-30.36);
+\fill [black] (56.31,-30.36) -- (55.55,-29.79) -- (55.47,-30.79);
+\draw (50.89,-29.32) node [above] {$+$};
+\draw [black] (42.29,-35.15) -- (54.21,-36.15);
+\fill [black] (54.21,-36.15) -- (53.46,-35.58) -- (53.37,-36.58);
+\draw (48.36,-35.09) node [above] {$-$};
+\draw [black] (39.18,-40.72) -- (52.02,-42.08);
+\fill [black] (52.02,-42.08) -- (51.27,-41.5) -- (51.17,-42.5);
+\draw (45.82,-40.81) node [above] {$=$};
+\draw [black] (15.59,-26.55) -- (30.21,-43.05);
+\fill [black] (30.21,-43.05) -- (30.05,-42.12) -- (29.31,-42.79);
+\draw (23.44,-33.35) node [right] {$*$};
+\draw [black] (35.18,-45.64) -- (48.32,-47.16);
+\fill [black] (48.32,-47.16) -- (47.58,-46.57) -- (47.47,-47.56);
+\draw (42.01,-45.81) node [above] {$=$};
+\draw [black] (16.15,-22.72) -- (41.25,-7.18);
+\fill [black] (41.25,-7.18) -- (40.31,-7.18) -- (40.83,-8.03);
+\draw (27.64,-14.45) node [above] {$+$};
+\draw [black] (16.35,-23.11) -- (46.75,-9.99);
+\fill [black] (46.75,-9.99) -- (45.81,-9.85) -- (46.21,-10.77);
+\draw (30.74,-16.04) node [above] {$-$};
+\draw [black] (15.05,-26.93) -- (25.95,-46.77);
+\fill [black] (25.95,-46.77) -- (26.01,-45.83) -- (25.13,-46.31);
+\draw (21.17,-35.66) node [right] {$/$};
+\draw [black] (30.36,-49.86) -- (44.24,-52.04);
+\fill [black] (44.24,-52.04) -- (43.52,-51.42) -- (43.37,-52.41);
+\draw (36.88,-51.55) node [below] {$=$};
+\end{tikzpicture}
+\end{center}
+
+Delimitadores:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (28,-27.9) circle (3);
+\draw [black] (49.4,-34.3) circle (3);
+\draw [black] (49.4,-34.3) circle (2.4);
+\draw [black] (49.4,-21.1) circle (3);
+\draw [black] (49.4,-21.1) circle (2.4);
+\draw [black] (30.86,-26.99) -- (46.54,-22.01);
+\fill [black] (46.54,-22.01) -- (45.63,-21.77) -- (45.93,-22.73);
+\draw (38.05,-23.97) node [above] {$,$};
+\draw [black] (30.87,-28.76) -- (46.53,-33.44);
+\fill [black] (46.53,-33.44) -- (45.9,-32.73) -- (45.62,-33.69);
+\draw (39.35,-30.56) node [above] {$;$};
+\draw [black] (19.6,-27.9) -- (25,-27.9);
+\draw (19.1,-27.9) node [left] {$I$};
+\fill [black] (25,-27.9) -- (24.2,-27.4) -- (24.2,-28.4);
+\end{tikzpicture}
+\end{center}
+
+
+\end{document}
