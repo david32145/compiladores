@@ -542,4 +542,84 @@ Delimitadores:
 \end{center}
 
 
+\section{Definições da gramática da linguagem C}
+
+Programa principal:
+\begin{lstlisting}
+program => <headers> void main <{> <stmt_list> <}>
+\end{lstlisting}
+
+Cabeçalhos:
+\begin{lstlisting}
+headers => (<header> <\n>)*
+\end{lstlisting}
+
+Cabeçalho:
+\begin{lstlisting}
+header => {<}<id>.h{>}
+\end{lstlisting}
+
+Expressão:
+\begin{lstlisting}
+expr => <id> = <expr>
+     => <expr> || <expr>
+     => <expr> == <expr> | <expr> != <expr>
+     => <expr> <= <expr> | <expr> < <expr>
+     => <expr> >= <expr> | <expr> > <expr>
+     => <expr> && <expr>
+     => <expr> + <expr> | <expr> - <expr>
+     => <expr> * <expr> | <expr> / <expr> 
+     => <expr> % <expr>
+     => !<expr> | -<expr> | +<expr>
+     => (<expr>)
+     => <id>
+     => <integer_literal> | <char_literal> 
+     => <float_literal> | <string_literal>
+\end{lstlisting}
+
+Declaração de expressão:
+\begin{lstlisting}
+expr_stmt => <expr>; | e
+\end{lstlisting}
+
+Declaração de condicional:
+\begin{lstlisting}
+if_stmt => if (<expr>) <stmt> | if (<expr>) <stmt> else <stmt>
+\end{lstlisting}
+
+Bloco de declarações:
+\begin{lstlisting}
+<decl_block> => <var_decl_list> <stmt_list>
+\end{lstlisting}
+
+Declaração:
+\begin{lstlisting}
+stmt => <expr_stmt> | <if_stmt> | <decl_block> | <return_stmt> | <break_stmt>
+\end{lstlisting}
+
+Declaração de variável:
+\begin{lstlisting}
+var_decl => <data_type> <id>;
+\end{lstlisting}
+
+Lista de declarações de variáveis:
+\begin{lstlisting}
+var_decl_list => <var_decl_list> <var_decl> | <var_decl>
+\end{lstlisting}
+
+Lista de declarações:
+\begin{lstlisting}
+stmt_list => <stmt_list> <stmt> | e
+\end{lstlisting}
+
+Declaração de retorno:
+\begin{lstlisting}
+return_stmt => return; | return <expr>;
+\end{lstlisting}
+
+Declaração de break:
+\begin{lstlisting}
+break_stmt => break;
+\end{lstlisting} 
+
 \end{document}
