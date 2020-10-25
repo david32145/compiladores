@@ -4,7 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{xcolor}
-\definecolor{green}{rgb}{0,0.5,0}
+\definecolor{green}{rgb}{0,0,0}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
@@ -79,7 +79,7 @@ digit = [0-9]
 
 Identificador:
 \begin{lstlisting}
-id = ([A-Za-z] + [0-9])*
+id = <word>(<word> + <digit>)*
 \end{lstlisting}
 
 Tipo de dados:
@@ -89,22 +89,22 @@ data_type = int | float | char | void
 
 Char literal:
 \begin{lstlisting}
-char_literal = '(.)'
+char_literal = '<word>'
 \end{lstlisting}
 
 String literal:
 \begin{lstlisting}
-string_literal = "(.)+"
+string_literal = "(<word> + <digit>)*"
 \end{lstlisting}
 
 Inteiro literal:
 \begin{lstlisting}
-integer_literal => [0-9]+
+integer_literal => (<digit>)+
 \end{lstlisting}
 
 Flutuante literal:
 \begin{lstlisting}
-float_literal => ([0-9]+).([0-9]+)
+float_literal => (<digit>)+.(<digit>)+
 \end{lstlisting}
 
 Operadores booleana:
@@ -546,35 +546,36 @@ Delimitadores:
 
 Programa principal:
 \begin{lstlisting}
-program => <headers> void main <{> <stmt_list> <}>
+program => void main() <{> <decl_block> <}>
 \end{lstlisting}
 
-Cabeçalhos:
-\begin{lstlisting}
-headers => (<header> <\n>)*
-\end{lstlisting}
-
-Cabeçalho:
-\begin{lstlisting}
-header => {<}<id>.h{>}
-\end{lstlisting}
+\newpage
 
 Expressão:
 \begin{lstlisting}
-expr => <id> = <expr>
-     => <expr> || <expr>
-     => <expr> == <expr> | <expr> != <expr>
-     => <expr> <= <expr> | <expr> < <expr>
-     => <expr> >= <expr> | <expr> > <expr>
-     => <expr> && <expr>
-     => <expr> + <expr> | <expr> - <expr>
-     => <expr> * <expr> | <expr> / <expr> 
-     => <expr> % <expr>
-     => !<expr> | -<expr> | +<expr>
-     => (<expr>)
-     => <id>
-     => <integer_literal> | <char_literal> 
-     => <float_literal> | <string_literal>
+expr => <id> = <expr><expr'>
+     => !<expr><expr'>
+     => -<expr><expr'>
+     => +<expr><expr'>
+     => (<expr>)<expr'>
+     => <id><expr'>
+     => <integer_literal><expr'>
+     => <char_literal><expr'>
+     => <float_literal><expr'>
+     => <string_literal><expr'>
+expr' => || <expr><expr'>
+      => == <expr><expr'>
+      => != <expr><expr'>
+      => <= <expr><expr'>
+      => < <expr><expr'>
+      => >= <expr><expr'>
+      => > <expr><expr'>
+      => && <expr><expr'>
+      => + <expr><expr'>
+      => - <expr><expr'>
+      => * <expr><expr'>
+      => / <expr><expr'>
+      => % <expr><expr'>
 \end{lstlisting}
 
 Declaração de expressão:
@@ -587,14 +588,14 @@ Declaração de condicional:
 if_stmt => if (<expr>) <stmt> | if (<expr>) <stmt> else <stmt>
 \end{lstlisting}
 
-Bloco de declarações:
-\begin{lstlisting}
-<decl_block> => <var_decl_list> <stmt_list>
-\end{lstlisting}
-
 Declaração:
 \begin{lstlisting}
-stmt => <expr_stmt> | <if_stmt> | <decl_block> | <return_stmt> | <break_stmt>
+stmt => <expr_stmt> | <if_stmt> | <decl_block> | <var_decl>
+\end{lstlisting}
+
+Bloco de declarações:
+\begin{lstlisting}
+<decl_block> => <{> <stmt_list> <}>
 \end{lstlisting}
 
 Declaração de variável:
@@ -602,26 +603,13 @@ Declaração de variável:
 var_decl => <data_type> <id>;
 \end{lstlisting}
 
-Lista de declarações de variáveis:
-\begin{lstlisting}
-var_decl_list => <var_decl_list> <var_decl> | <var_decl>
-\end{lstlisting}
-
 Lista de declarações:
 \begin{lstlisting}
-stmt_list => <stmt_list> <stmt> | e
+stmt_list => <stmt_list'>
+stmt_list' => <stmt><stmt_list'> 
 \end{lstlisting}
 
-Declaração de retorno:
-\begin{lstlisting}
-return_stmt => return; | return <expr>;
-\end{lstlisting}
-
-Declaração de break:
-\begin{lstlisting}
-break_stmt => break;
-\end{lstlisting} 
-
+\newpage
 
 \section{Diagramas de transição}
 
