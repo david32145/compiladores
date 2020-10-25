@@ -2,7 +2,9 @@
 
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
 \usepackage{graphicx}
+\usepackage{makecell}
 \usepackage{xcolor}
 \definecolor{green}{rgb}{0,0,0}
 \usepackage{amsmath}
@@ -608,6 +610,28 @@ Lista de declarações:
 stmt_list => <stmt_list'>
 stmt_list' => <stmt><stmt_list'> 
 \end{lstlisting}
+
+\newpage
+
+\section{Conjunto First e Follow}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+  \hline
+  Não terminais & First & Follow \\ \hline
+  program & $\{main\}$ & \\ \hline
+  expr & $\{id, !, -, +, (, integer\_literal, char\_literal, float\_literal, string\_literal\}$ & \\ \hline
+  expr' & $\{||, ==, !=, <=, >, >=, \&\&, +, -, *, /, \%\}$ & \\ \hline
+  expr\_stmt & \makecell{$\{id, !, -, +, (, integer\_literal, char\_literal, $ \\ $float\_literal, string\_literal, \epsilon\}$} & \\ \hline
+  if\_stmt & $\{if\}$ & \\ \hline
+  stmt & \makecell{$\{id, !, -, +, (, integer\_literal, char\_literal, $ \\ $float\_literal, string\_literal, \epsilon\, if, \{, data\_type\}$} & \\ \hline
+  decl\_block & $\{\{\}$ & \\ \hline
+  var\_decl & $\{data\_type\}$ & \\ \hline
+  stmt\_list & \makecell{$\{id, !, -, +, (, integer\_literal, char\_literal, $ \\ $float\_literal, string\_literal, \epsilon\, if, \{, data\_type\}$} & \\ \hline
+  stmt\_list' & \makecell{$\{id, !, -, +, (, integer\_literal, char\_literal, $ \\ $float\_literal, string\_literal, \epsilon\, if, \{, data\_type\}$} & \\
+  \hline
+\end{tabular}
+\end{center}
 
 \newpage
 
