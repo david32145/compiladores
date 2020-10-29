@@ -6,7 +6,7 @@ import java.util.List;
 public class BreakWord {
 	private static List<String> breakWords = Arrays.asList(
 			" ", "(", ")", "{", "}", ">", "<",
-			"=", "!", ";", "&", ",", "/"
+			"=", "!", ";", "&", ",", "/", "+", "-", "*", "/"
 	);
 	
 	

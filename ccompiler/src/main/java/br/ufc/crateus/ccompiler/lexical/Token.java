@@ -11,8 +11,12 @@ public class Token {
 		this.column = column;
 	}
 	
-	public String getLexeme() {
+	public String getLexemeAsString() {
 		return lexemeAsString;
+	}
+	
+	public Lexeme getLexeme() {
+		return LexicalAnalyzer.parseLexeme(lexemeAsString);
 	}
 	
 	public void appendToLexeme(char ch) {
