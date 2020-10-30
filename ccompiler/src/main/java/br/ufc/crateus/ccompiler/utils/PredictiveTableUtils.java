@@ -5,7 +5,6 @@ import br.ufc.crateus.ccompiler.syntactic.Grammar;
 import br.ufc.crateus.ccompiler.syntactic.PredictiveTable;
 import br.ufc.crateus.ccompiler.syntactic.constants.Productions;
 import br.ufc.crateus.ccompiler.syntactic.constants.Tags;
-import br.ufc.crateus.ccompiler.syntactic.productions.Production;
 
 public class PredictiveTableUtils {
 	public final static PredictiveTable getPredictiveTable(final Grammar G) {

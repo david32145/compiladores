@@ -19,12 +19,12 @@ public class SyntacticAnalyzer {
 	}
 
 	public void analyzer(List<Token> listTokens) {
-		Stack<Token> tokens = mapTokensAsStack(listTokens);
+		Stack<Token> inputTokens = mapTokensAsStack(listTokens);
 		Stack<ProductionType> stack = new Stack<>();
 		stack.add(ProductionType
 				.ofNoTerminal(grammar.findNoTerminalByTag(Tags.P)));
-		while (!tokens.isEmpty()) {
-			Token token = tokens.lastElement();
+		while (!inputTokens.isEmpty()) {
+			Token token = inputTokens.lastElement();
 			ProductionType head = stack.lastElement();
 			if (head.isNoTerminal()) {
 				Rule rule = predictiveTable.getRule(token.getLexeme(),
@@ -38,7 +38,7 @@ public class SyntacticAnalyzer {
 			}
 			if(head.isTerminal()) {
 				if(head.matches(token.getLexeme())) {
-					tokens.pop();
+					inputTokens.pop();
 					stack.pop();
 					System.out.println("Matches: " + token.getLexeme().getName());
 					continue;

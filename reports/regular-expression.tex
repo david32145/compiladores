@@ -127,7 +127,7 @@ delimiter = , | ;
 \section{Autômatos C}
 Autômatos das expressões acima:
 
-Letra:
+Word (W):
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
@@ -143,8 +143,7 @@ Letra:
 \end{tikzpicture}
 \end{center}
 
-
-Número:
+Digito (D):
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
@@ -160,27 +159,31 @@ Número:
 \end{tikzpicture}
 \end{center}
 
-Identificador:
+Identificador (id):
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
-\draw [black] (27.4,-27.9) circle (3);
-\draw [black] (49.9,-27.9) circle (3);
-\draw [black] (49.9,-27.9) circle (2.4);
-\draw [black] (30.4,-27.9) -- (46.9,-27.9);
-\fill [black] (46.9,-27.9) -- (46.1,-27.4) -- (46.1,-28.4);
-\draw (38.65,-27.4) node [above] {$[A-Z\mbox{ }a-z]$};
-\draw [black] (19,-27.9) -- (24.4,-27.9);
-\draw (18.5,-27.9) node [left] {$I$};
-\fill [black] (24.4,-27.9) -- (23.6,-27.4) -- (23.6,-28.4);
-\draw [black] (48.577,-25.22) arc (234:-54:2.25);
-\draw (49.9,-20.65) node [above] {$([A-Z\mbox{ }a-z]\mbox{ }+\mbox{ }[0-9])$};
-\fill [black] (51.22,-25.22) -- (52.1,-24.87) -- (51.29,-24.28);
+\draw [black] (21.2,-28) circle (3);
+\draw [black] (34.6,-28) circle (3);
+\draw [black] (34.6,-28) circle (2.4);
+\draw [black] (24.2,-28) -- (31.6,-28);
+\fill [black] (31.6,-28) -- (30.8,-27.5) -- (30.8,-
+28.5);
+\draw (27.9,-27.5) node [above] {$W$};
+\draw [black] (12.3,-28) -- (18.2,-28);
+\draw (11.8,-28) node [left] {$I$};
+\fill [black] (18.2,-28) -- (17.4,-27.5) -- (17.4,-
+28.5);
+\draw [black] (33.868,-25.103) arc (221.90524:-
+66.09476:2.25);
+\draw (38.55,-20.55) node [above] {$(W\mbox{ }+
+\mbox{ }D)\mbox{ }$};
+\fill [black] (36.45,-25.66) -- (37.38,-25.49) -- 
+(36.72,-24.75);
 \end{tikzpicture}
 \end{center}
 
-
-Tipo de dados:
+Tipo de dados (DT):
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
@@ -259,104 +262,95 @@ Tipo de dados:
 \end{tikzpicture}
 \end{center}
 
-Caractere:
+Char literal (CL):
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
-\draw [black] (16.3,-28.8) circle (3);
-\draw [black] (51.2,-28.8) circle (3);
-\draw [black] (34.3,-28.8) circle (3);
-\draw [black] (68.3,-28.8) circle (3);
-\draw [black] (68.3,-28.8) circle (2.4);
-\draw [black] (37.3,-28.8) -- (48.2,-28.8);
-\fill [black] (48.2,-28.8) -- (47.4,-28.3) -- (47.4,-29.3);
-\draw (42.75,-28.3) node [above] {$(.)$};
-\draw [black] (19.3,-28.8) -- (31.3,-28.8);
-\fill [black] (31.3,-28.8) -- (30.5,-28.3) -- (30.5,-29.3);
-\draw (25.3,-28.3) node [above] {$'$};
-\draw [black] (54.2,-28.8) -- (65.3,-28.8);
-\fill [black] (65.3,-28.8) -- (64.5,-28.3) -- (64.5,-29.3);
-\draw (59.75,-28.3) node [above] {$'$};
-\draw [black] (6.6,-28.8) -- (13.3,-28.8);
-\draw (6.1,-28.8) node [left] {$I$};
-\fill [black] (13.3,-28.8) -- (12.5,-28.3) -- (12.5,-29.3);
+\draw [black] (19.4,-29.4) circle (3);
+\draw [black] (32.7,-29.4) circle (3);
+\draw [black] (45.8,-29.4) circle (3);
+\draw [black] (59.5,-29.4) circle (3);
+\draw [black] (59.5,-29.4) circle (2.4);
+\draw [black] (22.4,-29.4) -- (29.7,-29.4);
+\fill [black] (29.7,-29.4) -- (28.9,-28.9) -- 
+(28.9,-29.9);
+\draw (26.05,-28.9) node [above] {$'$};
+\draw [black] (10.5,-29.4) -- (16.4,-29.4);
+\draw (10,-29.4) node [left] {$I$};
+\fill [black] (16.4,-29.4) -- (15.6,-28.9) -- 
+(15.6,-29.9);
+\draw [black] (35.7,-29.4) -- (42.8,-29.4);
+\fill [black] (42.8,-29.4) -- (42,-28.9) -- (42,-
+29.9);
+\draw (39.25,-28.9) node [above] {$W$};
+\draw [black] (48.8,-29.4) -- (56.5,-29.4);
+\fill [black] (56.5,-29.4) -- (55.7,-28.9) -- 
+(55.7,-29.9);
+\draw (52.65,-28.9) node [above] {$'$};
 \end{tikzpicture}
 \end{center}
 
-
-String:
+String literal (SL):
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
-\draw [black] (16.3,-28.8) circle (3);
-\draw [black] (51.2,-28.8) circle (3);
-\draw [black] (34.3,-28.8) circle (3);
-\draw [black] (68.3,-28.8) circle (3);
-\draw [black] (68.3,-28.8) circle (2.4);
-\draw [black] (37.3,-28.8) -- (48.2,-28.8);
-\fill [black] (48.2,-28.8) -- (47.4,-28.3) -- (47.4,-29.3);
-\draw (42.75,-28.3) node [above] {$(.)$};
-\draw [black] (19.3,-28.8) -- (31.3,-28.8);
-\fill [black] (31.3,-28.8) -- (30.5,-28.3) -- (30.5,-29.3);
-\draw (25.3,-28.3) node [above] {$"$};
-\draw [black] (54.2,-28.8) -- (65.3,-28.8);
-\fill [black] (65.3,-28.8) -- (64.5,-28.3) -- (64.5,-29.3);
-\draw (59.75,-28.3) node [above] {$"$};
-\draw [black] (49.877,-26.12) arc (234:-54:2.25);
-\draw (51.2,-21.55) node [above] {$(.)$};
-\fill [black] (52.52,-26.12) -- (53.4,-25.77) -- (52.59,-25.18);
-\draw [black] (6.6,-28.8) -- (13.3,-28.8);
-\draw (6.1,-28.8) node [left] {$I$};
-\fill [black] (13.3,-28.8) -- (12.5,-28.3) -- (12.5,-29.3);
+\draw [black] (19.4,-29.4) circle (3);
+\draw [black] (32.7,-29.4) circle (3);
+\draw [black] (48.8,-29.4) circle (3);
+\draw [black] (48.8,-29.4) circle (2.4);
+\draw [black] (22.4,-29.4) -- (29.7,-29.4);
+\fill [black] (29.7,-29.4) -- (28.9,-28.9) -- 
+(28.9,-29.9);
+\draw (26.05,-28.9) node [above] {$"$};
+\draw [black] (10.5,-29.4) -- (16.4,-29.4);
+\draw (10,-29.4) node [left] {$I$};
+\fill [black] (16.4,-29.4) -- (15.6,-28.9) -- 
+(15.6,-29.9);
+\draw [black] (35.7,-29.4) -- (45.8,-29.4);
+\fill [black] (45.8,-29.4) -- (45,-28.9) -- (45,-
+29.9);
+\draw (40.75,-28.9) node [above] {$"$};
+\draw [black] (31.377,-26.72) arc (234:-54:2.25);
+\draw (32.7,-22.15) node [above] {$(W\mbox{ }+\mbox{ 
+}D)$};
+\fill [black] (34.02,-26.72) -- (34.9,-26.37) -- 
+(34.09,-25.78);
 \end{tikzpicture}
 \end{center}
 
-Inteiro literal:
+Float literal (FL):
 \begin{center}
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
-\draw [black] (24.3,-25.8) circle (3);
-\draw [black] (46.9,-25.8) circle (3);
-\draw [black] (46.9,-25.8) circle (2.4);
-\draw [black] (15.9,-25.8) -- (21.3,-25.8);
-\draw (15.4,-25.8) node [left] {$I$};
-\fill [black] (21.3,-25.8) -- (20.5,-25.3) -- (20.5,-26.3);
-\draw [black] (27.3,-25.8) -- (43.9,-25.8);
-\fill [black] (43.9,-25.8) -- (43.1,-25.3) -- (43.1,-26.3);
-\draw (35.6,-25.3) node [above] {$[0-9]$};
-\draw [black] (45.577,-23.12) arc (234:-54:2.25);
-\draw (46.9,-18.55) node [above] {$[0-9]$};
-\fill [black] (48.22,-23.12) -- (49.1,-22.77) -- (48.29,-22.18);
-\end{tikzpicture}
-\end{center}
-
-Ponto flutuante literal:
-\begin{center}
-\begin{tikzpicture}[scale=0.2]
-\tikzstyle{every node}+=[inner sep=0pt]
-\draw [black] (14.2,-26.1) circle (3);
-\draw [black] (30.7,-26.1) circle (3);
-\draw [black] (45.9,-26.1) circle (3);
-\draw [black] (64.8,-26.1) circle (3);
-\draw [black] (64.8,-26.1) circle (2.4);
-\draw [black] (5.8,-26.1) -- (11.2,-26.1);
-\draw (5.3,-26.1) node [left] {$I$};
-\fill [black] (11.2,-26.1) -- (10.4,-25.6) -- (10.4,-26.6);
-\draw [black] (17.2,-26.1) -- (27.7,-26.1);
-\fill [black] (27.7,-26.1) -- (26.9,-25.6) -- (26.9,-26.6);
-\draw (22.45,-25.6) node [above] {$[0-9]$};
-\draw [black] (29.377,-23.42) arc (234:-54:2.25);
-\draw (30.7,-18.85) node [above] {$[0-9]$};
-\fill [black] (32.02,-23.42) -- (32.9,-23.07) -- (32.09,-22.48);
-\draw [black] (33.7,-26.1) -- (42.9,-26.1);
-\fill [black] (42.9,-26.1) -- (42.1,-25.6) -- (42.1,-26.6);
-\draw (38.3,-25.6) node [above] {$.$};
-\draw [black] (48.9,-26.1) -- (61.8,-26.1);
-\fill [black] (61.8,-26.1) -- (61,-25.6) -- (61,-26.6);
-\draw (55.35,-25.6) node [above] {$[0-9]$};
-\draw [black] (63.477,-23.42) arc (234:-54:2.25);
-\draw (64.8,-18.85) node [above] {$[0-9]$};
-\fill [black] (66.12,-23.42) -- (67,-23.07) -- (66.19,-22.48);
+\draw [black] (19.4,-29.4) circle (3);
+\draw [black] (32.7,-29.4) circle (3);
+\draw [black] (46.2,-29.4) circle (3);
+\draw [black] (61.3,-29.4) circle (3);
+\draw [black] (61.3,-29.4) circle (2.4);
+\draw [black] (22.4,-29.4) -- (29.7,-29.4);
+\fill [black] (29.7,-29.4) -- (28.9,-28.9) -- 
+(28.9,-29.9);
+\draw (26.05,-28.9) node [above] {$D$};
+\draw [black] (10.5,-29.4) -- (16.4,-29.4);
+\draw (10,-29.4) node [left] {$I$};
+\fill [black] (16.4,-29.4) -- (15.6,-28.9) -- 
+(15.6,-29.9);
+\draw [black] (31.377,-26.72) arc (234:-54:2.25);
+\draw (32.7,-22.15) node [above] {$D$};
+\fill [black] (34.02,-26.72) -- (34.9,-26.37) -- 
+(34.09,-25.78);
+\draw [black] (35.7,-29.4) -- (43.2,-29.4);
+\fill [black] (43.2,-29.4) -- (42.4,-28.9) -- 
+(42.4,-29.9);
+\draw (39.45,-28.9) node [above] {$.$};
+\draw [black] (49.2,-29.4) -- (58.3,-29.4);
+\fill [black] (58.3,-29.4) -- (57.5,-28.9) -- 
+(57.5,-29.9);
+\draw (53.75,-28.9) node [above] {$D$};
+\draw [black] (59.977,-26.72) arc (234:-54:2.25);
+\draw (61.3,-22.15) node [above] {$D$};
+\fill [black] (62.62,-26.72) -- (63.5,-26.37) -- 
+(62.69,-25.78);
 \end{tikzpicture}
 \end{center}
 
@@ -708,36 +702,8 @@ Abaixo está os diagramas para as gramáticas.
 
 \begin{center}
 \begin{figure}[h!]
-  \includegraphics[width=\linewidth]{./assets/headers.png}
-  \caption{Cabeçalhos}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[h!]
-  \includegraphics[width=\linewidth]{./assets/header.png}
-  \caption{Cabeçalho}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[h!]
-  \includegraphics[width=\linewidth]{./assets/break_stmt.png}
-  \caption{Declaração break}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[h!]
-  \includegraphics[width=\linewidth]{./assets/return_stmt.png}
-  \caption{Declaração return}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[h!]
-  \includegraphics[width=\linewidth]{./assets/decl_block.png}
-  \caption{Declaração de bloco de comandos}
+  \includegraphics[width=\linewidth]{./assets/code_block.png}
+  \caption{Bloco de comandos}
 \end{figure}
 \end{center}
 
@@ -750,8 +716,8 @@ Abaixo está os diagramas para as gramáticas.
 
 \begin{center}
 \begin{figure}[h!]
-  \includegraphics[width=\linewidth]{./assets/expr_stmt.png}
-  \caption{Declaração de expressão}
+  \includegraphics[width=\linewidth]{./assets/expr_1.png}
+  \caption{Auxiliar da Expressão}
 \end{figure}
 \end{center}
 
@@ -780,13 +746,6 @@ Abaixo está os diagramas para as gramáticas.
 \begin{figure}[h!]
   \includegraphics[width=\linewidth]{./assets/var_decl.png}
   \caption{Declaração de variável}
-\end{figure}
-\end{center}
-
-\begin{center}
-\begin{figure}[h!]
-  \includegraphics[width=\linewidth]{./assets/var_decl_list.png}
-  \caption{List de declaração de variáveis}
 \end{figure}
 \end{center}
 

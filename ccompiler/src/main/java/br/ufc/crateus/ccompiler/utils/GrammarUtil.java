@@ -64,55 +64,42 @@ public class GrammarUtil {
 		Production p12 = Production.of(Productions.P12,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_OR),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p13 = Production.of(Productions.P13,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_EQUAL),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p14 = Production.of(Productions.P14,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_DIFFERENT),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p15 = Production.of(Productions.P15,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_LESS_OR_EQUAL),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p16 = Production.of(Productions.P16,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_LESS),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p17 = Production.of(Productions.P17,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_GREATER_OR_EQUAL),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p18 = Production.of(Productions.P18,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_GREATER),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p19 = Production.of(Productions.P19,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_AND),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p20 = Production.of(Productions.P20,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_SUM),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p21 = Production.of(Productions.P21,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_SUB),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p22 = Production.of(Productions.P22,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_MULTIPLY),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p23 = Production.of(Productions.P23,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_DIVISION),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p24 = Production.of(Productions.P24,
 				ProductionType.ofTerminal(Lexeme.OPERATOR_REST),
 				ProductionType.ofNoTerminal(E));
-//				ProductionType.ofNoTerminal(E_1));
 		Production p25 = Production.of(Productions.P25,
 				ProductionType.ofTerminal(Lexeme.SEMICOLON));
 		Production p26 = Production.of(Productions.P26,
